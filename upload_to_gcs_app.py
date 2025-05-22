@@ -10,7 +10,7 @@ BUCKET_NAME = "mj-test-langchain"
 GCS_UPLOAD_FOLDER = "uploaded-files/"  # Optional folder path in GCS
 SERVICE_ACCOUNT_FILE = "/workspaces/brd-generation/keys/brd-generation-91eaf7b1a023.json"
 #MAX_FILE_SIZE_MB = 10  # Max upload size limit
-MAX_FILE_SIZE_KB = 200  # Max upload size limit
+MAX_FILE_SIZE_KB = 500  # Max upload size limit
 
 # === AUTH ===
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = SERVICE_ACCOUNT_FILE
@@ -19,7 +19,7 @@ bucket = client.bucket(BUCKET_NAME)
 
 # === STREAMLIT UI ===
 st.title("Input Collection ")
-
+#st.write("⚠️ Note: Files must be less than 200 KB. Larger files will be rejected.")
 uploaded_file = st.file_uploader("Choose a DOCX, CSV, or TXT file", type=["docx", "csv", "txt"])
 
 def sanitize_filename(filename: str) -> str:
